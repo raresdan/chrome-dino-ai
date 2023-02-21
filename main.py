@@ -1,91 +1,42 @@
-import pygame
-import os
+import pygame.font
+
+from cloud import Cloud
+from constants import *
+from dinosaur import Dinosaur
 
 pygame.init()
 
-# constants
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1100
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-RUNNING = [pygame.image.load(os.path.join("Assets/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoRun2.png"))]
-JUMPING = [pygame.image.load(os.path.join("Assets/Dino", "DinoJump.png"))]
-DUCKING = [pygame.image.load(os.path.join("Assets/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoDuck2.png"))]
-SMALL_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus1.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png"))]
-LARGE_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus1.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus3.png"))]
-PTERODACTYL = [pygame.image.load(os.path.join("Assets/Bird", "Bird1.png")),
-               pygame.image.load(os.path.join("Assets/Bird", "Bird2.png"))]
-CLOUD = [pygame.image.load(os.path.join("Assets/Other", "Cloud.png"))]
-BACKGROUND = [pygame.image.load(os.path.join("Assets/Other", "Track.png"))]
-
-
-class Dinosaur:
-    X_POS = 80
-    Y_POS = 310
-
-    def __init__(self):
-        self.duck_img = DUCKING
-        self.run_img = RUNNING
-        self.jump_img = JUMPING
-        self.dino_duck = False
-        self.dino_run = True
-        self.dino_jump = False
-        self.step_index = 0
-        self.image = self.run_img[0]
-        self.dino_rectangle = self.image.get_rect()
-        self.dino_rectangle.x = self.X_POS
-        self.dino_rectangle.y = self.Y_POS
-
-    def update(self, user_input):
-        if self.dino_duck:
-            self.duck()
-        if self.dino_run:
-            self.run()
-        if self.dino_jump:
-            self.jump()
-        if self.step_index >= 10:
-            self.step_index = 0
-
-        if user_input[pygame.K_UP] and not self.dino_jump:
-            self.dino_jump = True
-            self.dino_duck = False
-            self.dino_run = False
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
-            self.dino_jump = False
-            self.dino_duck = True
-            self.dino_run = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
-            self.dino_jump = False
-            self.dino_duck = False
-            self.dino_run = True
-
-    def duck(self):
-        pass
-
-    def run(self):
-        self.image = self.run_img[self.step_index // 5]
-        self.dino_rectangle = self.image.get_rect()
-        self.dino_rectangle.x = self.X_POS
-        self.dino_rectangle.y = self.Y_POS
-        self.step_index += 1
-
-    def draw(self, screen):
-        screen.blit(self.image, (self.dino_rectangle.x, self.dino_rectangle.y))
-
-    def jump(self):
-        pass
-
 
 def main():
+    game_speed = 14
     run = True
     clock = pygame.time.Clock()
     player = Dinosaur()
+    cloud = Cloud(game_speed)
+    x_position_background = 0
+    points = 0
+    font = pygame.font.Font("freesansbold.ttf", 20)
+
+    def score():
+        nonlocal points, game_speed
+        points += 1
+        if points % 100 == 0:
+            game_speed += 1
+        text = font.render("Score: " + str(points), True, (0, 0, 0))
+        text_rectangle = text.get_rect()
+        text_rectangle.center = (1000, 40)
+        SCREEN.blit(text, text_rectangle)
+
+    def background():
+        nonlocal x_position_background
+        image_width = BACKGROUND.get_width()
+        SCREEN.blit(BACKGROUND, (x_position_background, 380))
+        SCREEN.blit(BACKGROUND, (image_width + x_position_background, 380))
+        if x_position_background <= - image_width:
+            SCREEN.blit(BACKGROUND, (image_width + x_position_background, 380))
+            x_position_background = 0
+        x_position_background -= game_speed
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -94,8 +45,13 @@ def main():
         user_input = pygame.key.get_pressed()
         player.draw(SCREEN)
         player.update(user_input)
+        background()
+        cloud.draw(SCREEN)
+        cloud.update()
+        score()
         clock.tick(30)
         pygame.display.update()
 
 
-main()
+if __name__ == "__main__":
+    main()
