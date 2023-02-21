@@ -18,4 +18,5 @@ class Cloud:
             self.y = random.randint(50, 100)
 
     def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
+        if pygame.display.get_surface() is not None:
+            screen.blit(self.image, (self.x, self.y))
