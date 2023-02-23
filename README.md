@@ -6,4 +6,4 @@
 ### All you need to do is press arrow (:arrow_up:) up to jump over some obstacles or press arrow down (:arrow_down:) to crouch under other obstacles. It is that simple.
 
 
-### This mini-game was created using the [pygame](https://www.pygame.org/docs/) library. :snake:
+### This mini-game was created using the [pygame](https://www.pygame.org/docs/) library.
