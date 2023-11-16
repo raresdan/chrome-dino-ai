@@ -11,7 +11,7 @@ from pterodactyl import Pterodactyl
 pygame.init()
 
 
-def main():
+def play_step():
     game_speed = 14
     run = True
     clock = pygame.time.Clock()
@@ -77,7 +77,9 @@ def main():
 def menu(death_count, points):
     text = None
     run = True
+    # start_ticks = pygame.time.get_ticks()
     while run:
+        # elapsed_time = (pygame.time.get_ticks() - start_ticks) // 1000
         SCREEN.fill((255, 255, 255))
         font = pygame.font.Font("freesansbold.ttf", 30)
         if death_count == 0:
@@ -98,7 +100,9 @@ def menu(death_count, points):
                 run = False
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
-                main()
+                play_step()
+        # if elapsed_time >= 5:
+        #     play_step()
 
 
 if __name__ == "__main__":
