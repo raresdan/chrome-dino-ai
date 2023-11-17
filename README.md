@@ -1,10 +1,8 @@
-# Chrome Dinosaur Game with Reinforcement Learning
-
-![Game Demo](link_to_demo_gif_or_image)
+# 🦖Chrome Dinosaur Game with Reinforcement Learning
 
 ## Overview
 
-This repository contains a Python implementation of the classic Chrome Dinosaur Game using the Pygame library. The game has been enhanced with reinforcement learning using Python's NEAT (NeuroEvolution of Augmenting Topologies) library.
+This repository contains a *OO* (Object-Oriented) Python implementation of the classic Chrome Dinosaur Game using the **Pygame** library. The game has been enhanced with **Reinforcement Learning** using Python's **NEAT** (NeuroEvolution of Augmenting Topologies) library.
 
 ## Features
 
@@ -19,11 +17,7 @@ This repository contains a Python implementation of the classic Chrome Dinosaur 
 - Pygame
 - NEAT library
 
-## Installation
+## Configuration
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/chrome-dinosaur-rl.git
-   cd chrome-dinosaur-rl
+You can play with the parameters inside the config.txt file to obtain different results.
 
