@@ -1,4 +1,4 @@
-from constants import *
+from Game.constants import *
 
 
 class Obstacle:

@@ -1,4 +1,6 @@
-from constants import *
+import random
+
+from Game.constants import *
 
 
 class Dinosaur:
@@ -20,29 +22,17 @@ class Dinosaur:
         self.dino_rectangle = self.image.get_rect()
         self.dino_rectangle.x = self.X_POS
         self.dino_rectangle.y = self.Y_POS
+        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-    def update(self, user_input):
-        if self.dino_duck:
-            self.duck()
-        if self.dino_run:
-            self.run()
-        if self.dino_jump:
-            self.jump()
+    def update(self):
         if self.step_index >= 10:
             self.step_index = 0
-
-        if user_input[pygame.K_UP] and not self.dino_jump:
-            self.dino_jump = True
-            self.dino_duck = False
-            self.dino_run = False
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
-            self.dino_jump = False
-            self.dino_duck = True
-            self.dino_run = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
-            self.dino_jump = False
-            self.dino_duck = False
-            self.dino_run = True
+        if self.dino_duck:
+            self.duck()
+        elif self.dino_run:
+            self.run()
+        elif self.dino_jump:
+            self.jump()
 
     def duck(self):
         self.image = self.duck_img[self.step_index // 5]
@@ -64,8 +54,12 @@ class Dinosaur:
             self.dino_rectangle.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
         if self.jump_vel < - self.JUMP_VELOCITY:
+            self.dino_rectangle.y = self.Y_POS
             self.dino_jump = False
+            self.dino_run = True
             self.jump_vel = self.JUMP_VELOCITY
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rectangle.x, self.dino_rectangle.y))
+        pygame.draw.rect(SCREEN, self.color, (
+            self.dino_rectangle.x, self.dino_rectangle.y, self.dino_rectangle.width, self.dino_rectangle.height), 2)

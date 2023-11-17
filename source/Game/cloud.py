@@ -1,6 +1,6 @@
 import random
 
-from constants import *
+from Game.constants import *
 
 
 class Cloud:

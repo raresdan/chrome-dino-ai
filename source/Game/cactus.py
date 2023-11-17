@@ -1,6 +1,6 @@
 import random
 
-from obstacle import Obstacle
+from Game.obstacle import Obstacle
 
 
 class SmallCactus(Obstacle):
