@@ -1,9 +1,29 @@
-# :t-rex: Chrome Dinosaur Game 
+# Chrome Dinosaur Game with Reinforcement Learning
 
-The classic Google Chrome game that appears when your connection to the internet is lost.
+![Game Demo](link_to_demo_gif_or_image)
 
-Can you play as Dino to avoid all the obstacles (cactuses and the pterodactyls) to get the highest score?
-All you need to do is press arrow (:arrow_up:) up to jump over some obstacles or press arrow down (:arrow_down:) to crouch under other obstacles. It is that simple.
+## Overview
 
+This repository contains a Python implementation of the classic Chrome Dinosaur Game using the Pygame library. The game has been enhanced with reinforcement learning using Python's NEAT (NeuroEvolution of Augmenting Topologies) library.
 
-This mini-game was created using the [pygame](https://www.pygame.org/docs/) library.
+## Features
+
+- Classic Chrome Dinosaur Game experience
+- Reinforcement Learning powered by NEAT
+- Customizable parameters for NEAT algorithm
+- Easy-to-understand codebase
+
+## Requirements
+
+- Python 3.x
+- Pygame
+- NEAT library
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/chrome-dinosaur-rl.git
+   cd chrome-dinosaur-rl
+
