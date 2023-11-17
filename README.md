@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a *OO* (Object-Oriented) Python implementation of the classic Chrome Dinosaur Game using the **Pygame** library. The game has been enhanced with **Reinforcement Learning** using Python's **NEAT** (NeuroEvolution of Augmenting Topologies) library.
+This repository contains a **OO** (Object-Oriented) Python implementation of the classic Chrome Dinosaur Game using the **Pygame** library. The game has been enhanced with **Reinforcement Learning** using Python's **NEAT** (NeuroEvolution of Augmenting Topologies) library.
 
 ## Features
 
