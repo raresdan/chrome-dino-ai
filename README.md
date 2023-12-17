@@ -15,7 +15,7 @@ This repository contains a **OO** (Object-Oriented) Python implementation of the
 
 - Python 3.x
 - Pygame
-- NEAT library
+- NEAT
 
 ## Configuration
 
